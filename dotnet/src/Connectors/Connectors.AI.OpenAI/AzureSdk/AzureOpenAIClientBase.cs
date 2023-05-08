@@ -7,6 +7,7 @@ using Azure.AI.OpenAI;
 using Azure.Core;
 using Azure.Core.Pipeline;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.SemanticKernel.Diagnostics;
 
 namespace Microsoft.SemanticKernel.Connectors.AI.OpenAI.AzureSdk;
@@ -47,6 +48,7 @@ public abstract class AzureOpenAIClientBase : ClientBase
 
         this.ModelId = modelId;
         this.Client = new OpenAIClient(new Uri(endpoint), new AzureKeyCredential(apiKey), options);
+        this._log = logger ?? NullLogger.Instance; 
     }
 
     /// <summary>

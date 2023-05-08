@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Azure;
 using Azure.AI.OpenAI;
+using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel.AI;
 using Microsoft.SemanticKernel.AI.ChatCompletion;
 using Microsoft.SemanticKernel.AI.Embeddings;
@@ -19,6 +20,9 @@ namespace Microsoft.SemanticKernel.Connectors.AI.OpenAI.AzureSdk;
 
 public abstract class ClientBase
 {
+    protected ILogger? _log;
+
+
     /// <summary>
     /// Model Id or Deployment Name
     /// </summary>
@@ -49,12 +53,15 @@ public abstract class ClientBase
         Response<Completions>? response = await RunRequestAsync<Response<Completions>?>(
             () => this.Client.GetCompletionsAsync(this.ModelId, options, cancellationToken)).ConfigureAwait(false);
 
+        this._log.LogTrace("################################    request " + text);
         if (response == null || response.Value.Choices.Count < 1)
         {
             throw new AIException(AIException.ErrorCodes.InvalidResponseContent, "Text completions not found");
         }
 
-        return response.Value.Choices[0].Text;
+        var result = response.Value.Choices[0].Text;
+        this._log.LogTrace("(\"################################ response" + result);
+        return result;
     }
 
     /// <summary>
