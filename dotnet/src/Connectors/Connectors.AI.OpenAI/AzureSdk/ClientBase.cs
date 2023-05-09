@@ -20,7 +20,7 @@ namespace Microsoft.SemanticKernel.Connectors.AI.OpenAI.AzureSdk;
 
 public abstract class ClientBase
 {
-    protected ILogger? _log;
+    protected ILogger? Log;
 
 
     /// <summary>
@@ -53,14 +53,14 @@ public abstract class ClientBase
         Response<Completions>? response = await RunRequestAsync<Response<Completions>?>(
             () => this.Client.GetCompletionsAsync(this.ModelId, options, cancellationToken)).ConfigureAwait(false);
 
-        this._log.LogTrace("################################    request " + text);
+        this.Log.LogTrace("################################    request " + text);
         if (response == null || response.Value.Choices.Count < 1)
         {
             throw new AIException(AIException.ErrorCodes.InvalidResponseContent, "Text completions not found");
         }
 
         var result = response.Value.Choices[0].Text;
-        this._log.LogTrace("(\"################################ response" + result);
+        this.Log.LogTrace("(\"################################ response" + result);
         return result;
     }
 
