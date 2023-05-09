@@ -19,7 +19,7 @@ public sealed class KernelConfig
     /// <summary>
     /// Default name used when binding services if the user doesn't provide a custom value
     /// </summary>
-    internal const string DefaultServiceId = "__SK_DEFAULT";
+    public const string DefaultServiceId = "__SK_DEFAULT";
 
     /// <summary>
     /// Factory for creating HTTP handlers.
@@ -69,7 +69,7 @@ public sealed class KernelConfig
                 $"The service id '{serviceId}' is reserved, please use a different name");
         }
 
-        if (serviceId == null) { serviceId = DefaultServiceId; }
+        serviceId ??= DefaultServiceId;
 
         this.TextCompletionServices[serviceId] = serviceFactory;
         if (this.TextCompletionServices.Count == 1)
@@ -98,7 +98,7 @@ public sealed class KernelConfig
                 $"The service id '{serviceId}' is reserved, please use a different name");
         }
 
-        if (serviceId == null) { serviceId = DefaultServiceId; }
+        serviceId ??= DefaultServiceId;
 
         this.ChatCompletionServices[serviceId] = serviceFactory;
         if (this.ChatCompletionServices.Count == 1)
@@ -127,7 +127,7 @@ public sealed class KernelConfig
                 $"The service id '{serviceId}' is reserved, please use a different name");
         }
 
-        if (serviceId == null) { serviceId = DefaultServiceId; }
+        serviceId ??= DefaultServiceId;
 
         this.TextEmbeddingGenerationServices[serviceId] = serviceFactory;
         if (this.TextEmbeddingGenerationServices.Count == 1)
@@ -156,7 +156,7 @@ public sealed class KernelConfig
                 $"The service id '{serviceId}' is reserved, please use a different name");
         }
 
-        if (serviceId == null) { serviceId = DefaultServiceId; }
+        serviceId ??= DefaultServiceId;
 
         this.ImageGenerationServices[serviceId] = serviceFactory;
         if (this.ImageGenerationServices.Count == 1)

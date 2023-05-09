@@ -90,7 +90,7 @@ public sealed class Kernel : IKernel, IDisposable
         FunctionValidation.ValidFunctionName(functionName);
 
         ISKFunction function = this.CreateSemanticFunction(skillName, functionName, functionConfig);
-        this._skillCollection.AddSemanticFunction(function);
+        this._skillCollection.AddFunction(function);
 
         return function;
     }
@@ -112,7 +112,7 @@ public sealed class Kernel : IKernel, IDisposable
         foreach (KeyValuePair<string, ISKFunction> f in skill)
         {
             f.Value.SetDefaultSkillCollection(this.Skills);
-            this._skillCollection.AddNativeFunction(f.Value);
+            this._skillCollection.AddFunction(f.Value);
         }
 
         return skill;
@@ -126,7 +126,7 @@ public sealed class Kernel : IKernel, IDisposable
         Verify.NotNull(customFunction);
 
         customFunction.SetDefaultSkillCollection(this.Skills);
-        this._skillCollection.AddSemanticFunction(customFunction);
+        this._skillCollection.AddFunction(customFunction);
 
         return customFunction;
     }
@@ -223,8 +223,7 @@ public sealed class Kernel : IKernel, IDisposable
     /// <inheritdoc/>
     public T GetService<T>(string? name = null)
     {
-        // TODO: use .NET ServiceCollection (will require a lot of changes)
-        // TODO: support Connectors, IHttpFactory and IDelegatingHandlerFactory
+        name ??= KernelConfig.DefaultServiceId;
 
         if (typeof(T) == typeof(ITextCompletion))
         {
