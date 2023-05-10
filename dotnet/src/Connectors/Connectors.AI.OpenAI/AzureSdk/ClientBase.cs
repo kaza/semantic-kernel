@@ -55,14 +55,14 @@ public abstract class ClientBase
         Response<Completions>? response = await RunRequestAsync<Response<Completions>?>(
             () => this.Client.GetCompletionsAsync(this.ModelId, options, cancellationToken)).ConfigureAwait(false);
 
-        this.Log.LogTrace("################################    request " + text);
+        this.Log?.LogTrace("################################    request " + text);
         if (response == null || response.Value.Choices.Count < 1)
         {
             throw new AIException(AIException.ErrorCodes.InvalidResponseContent, "Text completions not found");
         }
 
         var result = response.Value.Choices[0].Text;
-        this.Log.LogTrace("(\"################################ response" + result);
+        this.Log?.LogTrace("(\"################################ response" + result);
         return result;
     }
 

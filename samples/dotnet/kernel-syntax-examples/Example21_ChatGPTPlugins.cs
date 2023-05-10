@@ -22,7 +22,7 @@ public static class Example21_ChatGptPlugins
         importHttpClient.DefaultRequestHeaders.Add("User-Agent", "Microsoft-Semantic-Kernel");
 
         //Import a ChatGPT plugin using one of the following Kernel extension methods
-        //kernel.ImportChatGptPluginSkillFromResourceAsync
+        //kernel.ImportChatGptPluginSkillFromResourceAsyncepo
         //kernel.ImportChatGptPluginSkillSkillFromDirectory
         //kernel.ImportChatGptPluginSkillSkillFromFile
         //kernel.ImportChatGptPluginSkillFromUrlAsync

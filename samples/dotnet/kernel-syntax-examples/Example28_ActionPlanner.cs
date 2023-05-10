@@ -32,6 +32,7 @@ public static class Example28_ActionPlanner
         // The planner returns a plan, consisting of a single function
         // to execute and achieve the goal requested.
         var plan = await planner.CreatePlanAsync(goal);
+        Console.WriteLine(plan.ToPlanString());
 
         // Execute the full plan (which is a single function)
         SKContext result = await plan.InvokeAsync();

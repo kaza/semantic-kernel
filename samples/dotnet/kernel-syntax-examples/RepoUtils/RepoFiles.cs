@@ -18,7 +18,9 @@ internal static class RepoFiles
 
         bool SearchPath(string pathToFind, out string result, int maxAttempts = 10)
         {
-            var currDir = Path.GetFullPath(Assembly.GetExecutingAssembly().Location);
+            //var currDir = Path.GetFullPath(Assembly.GetExecutingAssembly().Location);
+            var currDir = "E:\\source\\repos\\semantic-kernel\\samples\\skills";
+
             bool found;
             do
             {
