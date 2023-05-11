@@ -17,7 +17,7 @@ using RepoUtils;
 
 // ReSharper disable CommentTypo
 // ReSharper disable once InconsistentNaming
-internal static class Example31_CustomPlanner
+public static class Example31_CustomPlanner
 {
     public static async Task RunAsync()
     {

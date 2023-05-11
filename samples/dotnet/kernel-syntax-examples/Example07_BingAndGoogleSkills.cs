@@ -74,7 +74,7 @@ When answering multiple questions, use a bullet point list.
 Note: make sure single and double quotes are escaped using a backslash char.
 
 [COMMANDS AVAILABLE]
-- bing.search
+- google.search
 
 [INFORMATION PROVIDED]
 {{ $externalInformation }}
@@ -92,8 +92,8 @@ Answer:
 [EXAMPLE 3]
 Question: what's Ferrari stock price ? Who is the current number one female tennis player in the world?
 Answer:
-{{ '{{' }} bing.search ""what\\'s Ferrari stock price?"" {{ '}}' }}.
-{{ '{{' }} bing.search ""Who is the current number one female tennis player in the world?"" {{ '}}' }}.
+{{ '{{' }} google.search ""what\\'s Ferrari stock price?"" {{ '}}' }}.
+{{ '{{' }} google.search ""Who is the current number one female tennis player in the world?"" {{ '}}' }}.
 
 [END OF EXAMPLES]
 
@@ -111,11 +111,14 @@ Answer: ";
         var answer = await oracle.InvokeAsync(questions, context);
 
         // If the answer contains commands, execute them using the prompt renderer.
-        if (answer.Result.Contains("bing.search", StringComparison.OrdinalIgnoreCase))
+        if (
+            answer.Result.Contains("bing.search", StringComparison.OrdinalIgnoreCase)
+            ||
+            answer.Result.Contains("google.search", StringComparison.OrdinalIgnoreCase))
         {
             var promptRenderer = new PromptTemplateEngine();
-
-            Console.WriteLine("---- Fetching information from Bing...");
+            Console.WriteLine(answer.Result);
+            Console.WriteLine("---- Fetching information from Bing / Google ");
             var information = await promptRenderer.RenderAsync(answer.Result, context);
 
             Console.WriteLine("Information found:");
