@@ -101,7 +101,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InternalUtilities", "Intern
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenApiSkillsExample", "..\samples\dotnet\openapi-skills\OpenApiSkillsExample.csproj", "{4D91A3E0-C404-495B-AD4A-411C4E83CF54}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Planning.IterativePlanner", "src\Extensions\Planning.IterativePlanner\Planning.IterativePlanner.csproj", "{15DE246F-3E4E-49A1-BD82-D1CAFAFC7ED9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Planning.MrklSystemPlanner", "src\Extensions\Planning.MrklSystemPlanner\Planning.MrklSystemPlanner.csproj", "{15DE246F-3E4E-49A1-BD82-D1CAFAFC7ED9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
